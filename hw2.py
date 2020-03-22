@@ -41,8 +41,13 @@ def countries_with_no_deaths_count(date: datetime.date) -> int:
     """
     
     # Your code goes here
-    pass
-
+    count = 0
+    data = format_date(date)
+    for i in dfC.index:
+        if dfC.iloc[i][data]:
+            if not dfD.iloc[i][data]:
+                count += 1
+    return count
 
 def more_cured_than_deaths_indices(date: datetime.date) -> List[int]:
     """
@@ -68,4 +73,9 @@ def more_cured_than_deaths_indices(date: datetime.date) -> List[int]:
     """
     
     # Your code goes here
-    pass
+    e_list = []
+    data = format_date(date)
+    for i in dfC.index:
+        if dfR.iloc[i][data] > dfD.iloc[i][data]:
+            e_list.append(i)
+    return e_list
